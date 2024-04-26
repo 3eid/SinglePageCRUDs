@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Branch
+from .forms import BranchForm
 # Create your views here.
 
 def index(request):
@@ -8,16 +9,19 @@ def index(request):
     branches = Branch.objects.all()
     if branches:
         if id:
-            data['id'] = id
-            branch = branches.get(id)
-            data['branch'] = branch
-            data['length'] = len(branches)
-        
-        else:
-            branch = branches.first()
+            branch = branches.get(pk=id)
+            form = BranchForm( instance=branch)
             data['id'] = branch.id
             data['branch'] = branch
             data['length'] = len(branches)
+            data['form'] = form
+        else:
+            branch = branches.first()
+            form = BranchForm( instance=branch)
+            data['id'] = branch.id
+            data['branch'] = branch
+            data['length'] = len(branches)
+            data['form'] = form
     else:
         data['id'] = None
         data['length'] = 0
