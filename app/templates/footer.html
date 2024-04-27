@@ -1,0 +1,24 @@
+{% load static %}
+
+<footer class="text-primary text-center py-3" style="position: fixed; bottom: 0; width: 100%;">
+    <div class="container">
+      {% if id > first %}
+      <a href="/"><img src="{% static 'img/left.png' %}"><img src="{% static 'img/left.png' %}" style="margin-left: -12px;"></a>
+  
+      
+      <a href="?id={{ prev}}"><img src="{% static 'img/left.png' %}" style="margin-left: 60px;"></a>
+      {% else %}
+      <img src="{% static 'img/left.png' %}" style="opacity: 0.5;"><img src="{% static 'img/left.png' %}" style="margin-left: -12px; opacity: 0.5;">
+      <img src="{% static 'img/left.png' %}" style="margin-left: 60px; opacity: 0.5;">
+      {% endif %}
+  
+      <span style="margin: 30px;">{{ cur }} / {{ length }}</span>
+      {% if id == last %}
+      <img src="{% static 'img/right.png' %}" style="margin-right: 60px;opacity: 0.5;">
+      <img src="{% static 'img/right.png' %}"  style= "opacity: 0.5;"><img src="{% static 'img/right.png' %}" style="margin-left: -12px; opacity: 0.5;">
+      {% else %}
+      <a href="?id={{ next }}"><img src="{% static 'img/right.png' %}" style="margin-right: 60px;"></a>
+      <a href="?id={{ last }}"><img src="{% static 'img/right.png' %}"><img src="{% static 'img/right.png' %}" style="margin-left: -12px;"></a>
+      {% endif %}
+    </div>
+  </footer>
